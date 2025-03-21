@@ -17,16 +17,16 @@ const Home = () => {
     <div>
       <Navbar />
       {/* Hero Section */}
-      <section className="relative h-screen w-full bg-gradient-to-tr from-gray-200 via-yellow-100/60 to-transparent font-poppins overflow-hidden">
-        {/* Background pattern/texture (optional) */}
+      <section className="relative min-h-screen w-full bg-gradient-to-tr from-gray-200 via-yellow-100/60 to-transparent font-poppins overflow-hidden">
+        {/* Background texture */}
         <div className="absolute inset-0 bg-[url('/subtle-pattern.svg')] opacity-10"></div>
 
-        <div className="relative z-10 container mx-auto h-full flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-10 gap-12">
-          {/* Left Column: Text Content */}
-          <div className="text-black text-center md:text-left max-w-xl animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+        <div className="relative z-10 container mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-12 py-10 gap-12">
+          {/* Left Column */}
+          <div className="text-black text-center md:text-left max-w-2xl animate-fade-in px-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Wij creëren een gastvrije en veilige omgeving voor{" "}
-              <span className="text-yellow-500 relative">
+              <span className="text-yellow-500 relative inline-block">
                 iedereen
                 <svg
                   className="absolute -bottom-2 left-0 w-full h-2 text-yellow-400"
@@ -44,13 +44,13 @@ const Home = () => {
               <span className="text-yellow-500">.</span>
             </h1>
 
-            <p className="text-gray-700 text-lg mb-8">
+            <p className="text-gray-700 text-base sm:text-lg mb-8">
               Professionele beveiligingsdiensten voor bedrijven en evenementen
               in heel Nederland.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <button className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-black font-semibold px-8 py-4 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+              <button className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-black font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -67,7 +67,7 @@ const Home = () => {
                 </svg>
                 Gratis Veiligheidscheck
               </button>
-              <button className="border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-300 font-semibold px-8 py-4 rounded-lg flex items-center justify-center gap-2">
+              <button className="border-2 border-black hover:bg-black hover:text-white transition-all ease-in-out duration-300 font-semibold px-6 py-3 sm:px-8 sm:py-4 rounded-lg flex items-center justify-center gap-2 text-sm sm:text-base">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -87,10 +87,10 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Column: Image Gallery */}
-          <div className="relative w-full md:w-1/2 h-72 md:h-96 animate-fade-in">
+          {/* Right Column */}
+          <div className="relative w-full md:w-1/2 h-72 sm:h-96 lg:h-[500px] animate-fade-in px-2">
             <div className="grid grid-cols-3 gap-3 h-full">
-              <div className="col-span-2 relative overflow-hidden group transform transition-all duration-500 hover:scale-[1.02]">
+              <div className="col-span-2 relative overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
                 <img
                   src="https://beesafesecurity.nl/wp-content/uploads/2024/09/beeafe-1-e1727730659435-1024x783.png"
                   alt="Security professional"
@@ -104,7 +104,7 @@ const Home = () => {
               </div>
 
               <div className="space-y-3">
-                <div className="h-1/2 relative overflow-hidden group transform transition-all duration-500 hover:scale-[1.02]">
+                <div className="h-1/2 relative overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
                   <img
                     src="https://beesafesecurity.nl/wp-content/uploads/2025/01/BEE02519-e1737991922994-971x1024.png"
                     alt="Security guard"
@@ -117,7 +117,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="h-1/2 relative overflow-hidden group transform transition-all duration-500 hover:scale-[1.02]">
+                <div className="h-1/2 relative overflow-hidden group transition-transform duration-500 hover:scale-[1.02]">
                   <img
                     src="https://beesafesecurity.nl/wp-content/uploads/2024/09/20240531143718_IMG_0052-1-803x1024.jpg"
                     alt="Security team"
@@ -132,30 +132,13 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Yellow accent element */}
+            {/* Yellow Accent */}
             <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full -z-10 blur-sm opacity-50"></div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-          <span className="text-xs text-gray-600 mb-2">Scroll voor meer</span>
-          <svg
-            className="w-6 h-6 text-gray-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
       </section>
+
       {/* end of hero section */}
 
       <section className="bg-white py-24 px-6 font-poppins">
@@ -522,7 +505,6 @@ const Home = () => {
               </div>
             ))}
           </div>
-
 
           {/* CTA */}
           <div className="mt-16 text-center">
