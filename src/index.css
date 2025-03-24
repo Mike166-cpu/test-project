@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-      @apply font-poppins;
-    }
+  body {
+    @apply font-poppins;
   }
+}
+
+body,
+html {
+  overflow-x: hidden;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ShieldCheck, Camera, AlarmClock, Users } from "lucide-react";
@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { FaLock, FaUserShield, FaBalanceScale } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const Home = () => {
   const images = [
@@ -13,8 +15,59 @@ const Home = () => {
     "https://source.unsplash.com/1600x900/?security,camera",
     "https://source.unsplash.com/1600x900/?alarm,building",
   ];
+
+  const features = [
+    {
+      icon: <FaLock className="text-yellow-500 text-3xl" />, // Security Icon
+      title: "Branche expertise",
+      description:
+        "Van grote evenementen tot intieme feesten, wij stemmen onze aanpak en uitstraling af op jouw evenement.",
+    },
+    {
+      icon: <FaUserShield className="text-yellow-500 text-3xl" />, // User Shield Icon
+      title: "Jij staat centraal",
+      description:
+        "Jij staat centraal in onze werkwijze, wij denken met je mee en bieden passende oplossingen.",
+    },
+    {
+      icon: <FaBalanceScale className="text-yellow-500 text-3xl" />, // Balance Scale Icon
+      title: "Eerlijke tarieven",
+      description:
+        "Bij ons kun je rekenen op eerlijke en transparante tarieven. We geloven in duidelijke afspraken.",
+    },
+  ];
+
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 bg-yellow-500 text-white p-3 rounded-lg shadow-lg hover:bg-yellow-600 transition-transform duration-300 ${
+          visible ? "block" : "hidden"
+        }`}
+        aria-label="Back to Top"
+      >
+        <FaArrowUp className="text-xl" />
+      </button>
+
       <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-screen w-full bg-gradient-to-tr from-gray-200 via-yellow-100/60 to-transparent font-poppins overflow-hidden">
@@ -136,15 +189,83 @@ const Home = () => {
             <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full -z-10 blur-sm opacity-50"></div>
           </div>
         </div>
-
       </section>
 
       {/* end of hero section */}
 
+      {/* 2nd section */}
       <section className="bg-white py-24 px-6 font-poppins">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-20">
+          {/* Modern Minimalistic Google Reviews */}
+          <div className="mb-12 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 bg-white py-4 px-6 rounded-lg shadow-sm">
+            <div className="flex items-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" className="mr-2">
+                <path d="M12 11V8L15 5H9L12 8V11Z" fill="#EA4335" />
+                <path
+                  d="M19.05 4.91C17.18 3.03 14.69 2 12.04 2C7.21 2 3.25 5.32 2.25 9.75C1.24 14.18 3.78 18.5 7.86 20.24L10.07 16.4C8.84 15.63 8.02 14.34 8.02 12.88C8.02 10.37 9.81 8.29 12.25 8.05V11L15.25 8.05L12.25 5.08V8.05C8.21 8.29 5.04 12.06 5.90 16.08C6.75 20.1 10.33 22.95 14.42 22.06C18.5 21.17 21.25 17.47 21.25 13.38C21.25 10.69 20.41 8.24 19.05 4.91Z"
+                  fill="#4285F4"
+                />
+              </svg>
+              <span className="text-sm font-medium text-gray-700">
+                Google Reviews
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <span className="text-3xl font-bold text-gray-900 mr-2">4.8</span>
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg
+                    key={star}
+                    className={`w-4 h-4 ${
+                      star <= 4 ? "text-amber-400" : "text-amber-400"
+                    }`}
+                    fill={star <= 4 ? "currentColor" : "currentColor"}
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                ))}
+              </div>
+            </div>
+
+            <div className="h-6 hidden md:block border-l border-gray-200"></div>
+
+            <div className="text-center md:text-left">
+              <p className="text-sm text-gray-600">
+                <span className="font-medium">63</span> reviews
+              </p>
+            </div>
+
+            <div className="h-6 hidden md:block border-l border-gray-200"></div>
+
+            <a
+              href="https://www.google.com/maps/place/your-business"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center transition-colors duration-300"
+            >
+              Schrijf een review
+              <svg
+                className="w-3 h-3 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <div className="mb-20 flex flex-col items-center text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Waarom kiezen voor{" "}
               <span className="text-yellow-500">BeeSafe Security</span>
@@ -158,71 +279,7 @@ const Home = () => {
 
           {/* Features */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              {
-                icon: (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                ),
-                title: "Branche expertise",
-                description:
-                  "Van grote evenementen tot intieme feesten, wij stemmen onze aanpak en uitstraling af op jouw evenement.",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                ),
-                title: "Jij staat centraal",
-                description:
-                  "Jij staat centraal in onze werkwijze, wij denken met je mee en bieden passende oplossingen.",
-              },
-              {
-                icon: (
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                ),
-                title: "Eerlijke tarieven",
-                description:
-                  "Bij ons kun je rekenen op eerlijke en transparante tarieven. We geloven in duidelijke afspraken.",
-              },
-            ].map((feature, index) => (
+            {features.map((feature, index) => (
               <div key={index} className="group transition-all duration-300">
                 <div className="flex items-center mb-6 text-yellow-500">
                   <div className="w-12 h-12 border border-yellow-200 rounded-lg flex items-center justify-center group-hover:bg-yellow-50 transition-colors duration-300">
@@ -262,6 +319,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* END OF SECTION 2 */}
 
       {/* SECTION 3 */}
       <section className="py-20 px-6 font-poppins bg-gray-50">
@@ -374,7 +432,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SOCiAL PROOF */}
       {/* SOCIAL PROOF */}
       <section className="bg-gradient-to-b from-white to-amber-50 py-16 md:py-24 px-4 md:px-8 lg:px-16 font-poppins">
         <div className="max-w-6xl mx-auto">
@@ -642,6 +699,7 @@ const Home = () => {
                 />
               </svg>
             </a>
+            <p className="mt-4 text-gray-600 text-lg font-medium">Thank You!</p>
           </div>
         </div>
       </section>
